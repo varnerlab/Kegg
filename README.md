@@ -19,7 +19,7 @@ This will install the `Kegg.jl` package and other all required packages.
 
 | Method | Input | Output | Description |
 | ------ | ----- | ------ | ----------- |
-``get_ec_number_for_gene`` | [String](https://docs.julialang.org/en/v1/manual/strings/index.html) |  Array of ec numbers [Array{String,1}](https://docs.julialang.org/en/v1/base/arrays/index.html)) | Takes a KEGG gene code and returns an array of EC numbers associated with the gene
+``get_ec_number_for_gene`` | [String](https://docs.julialang.org/en/v1/manual/strings/index.html) | [Array{String,1}](https://docs.julialang.org/en/v1/base/arrays/index.html)) | Takes a [KEGG gene code](https://www.genome.jp/kegg/genes.html) encoded as a Julia string of the form ``<org>:<gene location>`` and returns an array of EC numbers that are associated with the gene.
 
 ### Funding
 The work described was supported by the [Center on the Physics of Cancer Metabolism at Cornell University](https://psoc.engineering.cornell.edu) through Award Number 1U54CA210184-01 from the [National Cancer Institute](https://www.cancer.gov). The content is solely the responsibility of the authors and does not necessarily
