@@ -64,6 +64,7 @@ function get_reactions_for_ec_number(ec_number::String)::Union{Array{Reaction,1}
     return record_array
 end
 
+# Method: get_ec_number_for_gene
 function get_ec_number_for_gene(gene_location::String)::Array{String,1}
 
     # TODO: check gene location string -
