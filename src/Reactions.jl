@@ -64,7 +64,7 @@ function get_reactions_for_ec_number(ec_number::String)::Union{Array{Reaction,1}
     return record_array
 end
 
-# Method: get_ec_number_for_gene
+# get_ec_number_for_gene
 function get_ec_number_for_gene(gene_location::String)::Array{String,1}
 
     # TODO: check gene location string -
@@ -79,7 +79,7 @@ function get_ec_number_for_gene(gene_location::String)::Array{String,1}
     ecdata = http_get_call_with_url(url_string)
 
     # check: do we have only the new line? Yes, then return nothing
-    if (ecdata == "\n")
+    if (ecdata == "")
         return nothing
     end
 
