@@ -10,4 +10,5 @@ include("Types.jl")
 include("Network.jl")
 include("Reactions.jl")
 include("Sequence.jl")
+include("Lists.jl")
 # ------------------------------------------------------------------------------ #

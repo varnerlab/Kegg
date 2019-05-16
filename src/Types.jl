@@ -10,6 +10,18 @@ mutable struct Reaction
 	end
 end
 
+mutable struct Organism
+
+    organism_id::String
+    organism_code::String
+    species_description::String
+    species_taxonomy::String
+
+    function Organism()
+		this = new()
+	end
+end
+
 mutable struct Sequence
 
     gene_location::String

@@ -1,3 +1,4 @@
+# --- PUBLIC METHODS ----------------------------------------------------------- #
 function get_reactions_for_ec_number(ec_number::String)::Union{Array{Reaction,1}, Nothing}
 
     # Check: does this contain a ec: prefix? Yes, chop it off -
@@ -63,9 +64,12 @@ function get_reactions_for_ec_number(ec_number::String)::Union{Array{Reaction,1}
     return record_array
 end
 
-function get_ec_number_for_gene(gene_location::String)
+function get_ec_number_for_gene(gene_location::String)::Array{String,1}
 
     # TODO: check gene location string -
+
+    # initialize -
+    ec_number_array = String[]
 
     # formulate the url -
     url_string = "http://rest.kegg.jp/link/ec/$(gene_location)"
@@ -78,20 +82,26 @@ function get_ec_number_for_gene(gene_location::String)
         return nothing
     end
 
-    # ok, parse the response which is of the form: {gene_location}\t{ec_number}\n
-    ec_number = string(split(ecdata,"\t")[2])
+    # ok, parse the response which is of the form: {gene_location}\t{ec_number}\n*
+    # we can have more than 1 record -
+    record_array = split(ecdata,"\n")
 
-    # check - is the last char a new line?, Yes, cut it off -
-    if (ec_number[end] == '\n')
-        return ec_number[1:end-1]
+    # process the records -
+    for record in record_array
+
+        # split along the \t -
+        if (record!="")
+            ec_number = string(split(record,"\t")[2])
+            push!(ec_number_array,ec_number)
+        end
     end
 
     # return this record -
-    return ec_number
+    return ec_number_array
 end
+# ------------------------------------------------------------------------------ #
 
-
-function write_ec_numbers_to_disk(path_to_input_gene_file::String,path_to_output_file::String,kegg_organism_code::String)
+function write_ec_numbers_to_disk(path_to_input_gene_file::String, path_to_output_file::String, kegg_organism_code::String)
 
     # initalize -
     ec_number_buffer = String[]
